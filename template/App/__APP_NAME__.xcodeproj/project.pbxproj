@@ -250,7 +250,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
-				DEVELOPMENT_TEAM = VA39VYN298;
+				DEVELOPMENT_TEAM = {{ team }};
 				INFOPLIST_FILE = StickerPackExtension/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = {{ identifier }}.{{ bundleName }}.StickerPackExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -262,7 +262,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
-				DEVELOPMENT_TEAM = VA39VYN298;
+				DEVELOPMENT_TEAM = {{ team }};
 				INFOPLIST_FILE = StickerPackExtension/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = {{ identifier }}.{{ bundleName }}.StickerPackExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -274,7 +274,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
-				DEVELOPMENT_TEAM = VA39VYN298;
+				DEVELOPMENT_TEAM = {{ team }};
 				INFOPLIST_FILE = {{ bundleName }}/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = {{ identifier }}.{{ bundleName }};
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -286,7 +286,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
-				DEVELOPMENT_TEAM = VA39VYN298;
+				DEVELOPMENT_TEAM = {{ team }};
 				INFOPLIST_FILE = {{ bundleName }}/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = {{ identifier }}.{{ bundleName }};
 				PRODUCT_NAME = "$(TARGET_NAME)";

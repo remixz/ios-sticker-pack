@@ -15,6 +15,7 @@ function createApp (opts, cb) {
   const bundleName = (opts.bundleName || path.basename(process.cwd())).replace(/ /g, '-')
   const displayName = opts.displayName || path.basename(process.cwd())
   const identifier = opts.identifier || `com.example.${bundleName.toLowerCase()}`
+  const team = opts.team || 'foo'
 
   if (fs.existsSync(appPath)) {
     rimraf.sync(appPath)
@@ -29,7 +30,7 @@ function createApp (opts, cb) {
     ], (err) => {
       if (err) return cb(err)
 
-      const templateOptions = { bundleName, displayName, identifier }
+      const templateOptions = { bundleName, displayName, identifier, team }
       async.each([
         `${appPath}/${bundleName}/Info.plist`,
         `${appPath}/${bundleName}.xcodeproj/project.pbxproj`,
