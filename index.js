@@ -153,16 +153,11 @@ module.exports = {
         exec(`xcodebuild -project ${files[0]}`, (err) => {
           if (err) throw err
 
-          console.log('🕓  Installing sticker pack...')
+          console.log('🕓  Installing sticker pack... Make sure your device is connected!')
           glob('App/build/Release-iphoneos/*.app', (err, files) => {
             if (err) throw err
 
-            const deviceTimeout = setTimeout(() => {
-              console.log('❌  No device was connected within 5 seconds -- aborting')
-              process.exit(1)
-            }, 5000)
             exec(`${__dirname}/node_modules/.bin/ios-deploy --uninstall --bundle ${files[0]}`, (err) => {
-              clearTimeout(deviceTimeout)
               if (err) throw err
 
               console.log('✅  Installed! Open iMessage to test out your sticker pack.')
