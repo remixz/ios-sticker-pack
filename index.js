@@ -8,6 +8,7 @@ const async = require('neo-async')
 const mustache = require('mustache')
 const glob = require('glob')
 const bytes = require('bytes')
+const open = require('opn')
 
 function createApp (opts, cb) {
   const templatePath = path.resolve(__dirname, 'template/App')
@@ -15,10 +16,17 @@ function createApp (opts, cb) {
   const bundleName = (opts.bundleName || path.basename(process.cwd())).replace(/ /g, '-')
   const displayName = opts.displayName || path.basename(process.cwd())
   const identifier = opts.identifier || `com.example.${bundleName.toLowerCase()}`
-  const team = opts.team || 'foo'
 
   if (fs.existsSync(appPath)) {
-    rimraf.sync(appPath)
+    return rimraf(`${appPath}/StickerPackExtension/Stickers.xcstickers`, (err) => {
+      if (err) return cb(err)
+
+      ncp(`${templatePath}/StickerPackExtension/Stickers.xcstickers`, `${appPath}/StickerPackExtension/Stickers.xcstickers`, (err) => {
+        if (err) return cb(err)
+
+        cb()
+      })
+    })
   }
 
   ncp(templatePath, appPath, (err) => {
@@ -30,7 +38,7 @@ function createApp (opts, cb) {
     ], (err) => {
       if (err) return cb(err)
 
-      const templateOptions = { bundleName, displayName, identifier, team }
+      const templateOptions = { bundleName, displayName, identifier }
       async.each([
         `${appPath}/${bundleName}/Info.plist`,
         `${appPath}/${bundleName}.xcodeproj/project.pbxproj`,
@@ -46,7 +54,21 @@ function createApp (opts, cb) {
       }, (err) => {
         if (err) return cb(err)
 
-        cb()
+        console.log(`⚠️  Okay, one last thing: You need to provision your app in Xcode. I've opened Xcode for you, here's what you need to do:`)
+        console.log(`  1. Choose on your project in the sidebar on the left (don't expand it, just click)`)
+        console.log(`  2. In the dropdown that says "Unknown Team (__TEAM__)", change it to your personal team.`)
+        console.log(`  3. Quit Xcode (not just close the window), and this wizard will continue.`)
+        console.log(`You only need to do this once. Sorry for the inconvenience!`)
+        open(`${appPath}/${bundleName}.xcodeproj`).then(() => {
+          fs.readFile(`${appPath}/${bundleName}.xcodeproj/project.pbxproj`, (err, buf) => {
+            if (err) return cb(err)
+
+            const str = buf.toString()
+            const id = (/DevelopmentTeam = (\w+)/gi).exec(str)[1]
+            const final = buf.toString().replace(/__TEAM__/g, id)
+            fs.writeFile(`${appPath}/${bundleName}.xcodeproj/project.pbxproj`, final, cb)
+          })
+        })
       })
     })
   })
