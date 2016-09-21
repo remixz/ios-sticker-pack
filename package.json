@@ -1,6 +1,6 @@
 {
   "name": "ios-sticker-pack",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Create and install iMessage sticker packs from the command line",
   "main": "index.js",
   "bin": "bin.js",
