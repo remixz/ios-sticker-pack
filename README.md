@@ -1,5 +1,7 @@
 # ios-sticker-pack
 
+## oh no, might be broken right now!! see: https://github.com/remixz/ios-sticker-pack/issues/1
+
 Create and install iMessage sticker packs from the command line. Stickers and adhesive not included.
 
 ![demo of ios-sticker-pack](https://d3vv6lp55qjaqc.cloudfront.net/items/363S193T0x3G1Z3O3Z0v/stickademo.gif?X-CloudApp-Visitor-Id=1635062&v=a21e014b)
