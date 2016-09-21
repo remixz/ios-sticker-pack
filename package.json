@@ -1,0 +1,38 @@
+{
+  "name": "ios-sticker-pack",
+  "version": "1.0.0",
+  "description": "Create and install iMessage sticker packs from the command line",
+  "main": "index.js",
+  "bin": "bin.js",
+  "scripts": {
+    "test": "standard"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/remixz/ios-sticker-pack.git"
+  },
+  "keywords": [
+    "imessage",
+    "stickers"
+  ],
+  "author": "Zach Bruggeman <mail@bruggie.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/remixz/ios-sticker-pack/issues"
+  },
+  "homepage": "https://github.com/remixz/ios-sticker-pack#readme",
+  "dependencies": {
+    "bytes": "^2.4.0",
+    "glob": "^7.1.0",
+    "ios-deploy": "^1.9.0",
+    "mkdirp": "^0.5.1",
+    "mustache": "^2.2.1",
+    "ncp": "^2.0.0",
+    "neo-async": "^2.0.1",
+    "rimraf": "^2.5.4",
+    "yargs": "^5.0.0"
+  },
+  "devDependencies": {
+    "standard": "^8.1.0"
+  }
+}
