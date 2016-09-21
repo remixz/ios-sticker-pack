@@ -82,7 +82,7 @@ function addImages (cb) {
     stickersConfig.stickers = []
   }
 
-  glob('*.?(png|gif|jpg|jpeg)', (err, files) => {
+  glob('*.+(png|gif|jpg|jpeg)', (err, files) => {
     if (err) return cb(err)
 
     async.each(files, (file, cb) => {
