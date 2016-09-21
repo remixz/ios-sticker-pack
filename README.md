@@ -1,6 +1,10 @@
 # ios-sticker-pack
 
-## oh no, might be broken right now!! see: https://github.com/remixz/ios-sticker-pack/issues/1
+## Probably doesn't work
+
+Unfortunately, this module probably won't work for you. Turns out you need to run Xcode to build a project at least once, since it has to register the app with Apple. You can see the investigation and final thoughts here: https://github.com/remixz/ios-sticker-pack/issues/1#issuecomment-248513657 I'll leave this up though, in case someone can find something fun to do with it. :wave:
+
+---
 
 Create and install iMessage sticker packs from the command line. Stickers and adhesive not included.
 
