@@ -92,9 +92,16 @@ function addImages (cb) {
         return cb()
       }
       const fileBaseName = path.basename(file, path.extname(file))
-      stickersConfig.stickers.push({
-        filename: `${fileBaseName}.sticker`
-      })
+      const fileBaseNameValue = `${fileBaseName}.sticker`
+      const stickerItemExists = stickersConfig.stickers.filter(function (e) {
+          return e['filename']==fileBaseNameValue
+      }).length
+
+      if(!stickerItemExists){
+          stickersConfig.stickers.push({
+            filename: fileBaseNameValue
+          })
+      }
 
       const stickerImagePath = path.resolve(process.cwd(), file)
       const stickerFolder = `${stickersPath}/${fileBaseName}.sticker`
@@ -114,13 +121,13 @@ function addImages (cb) {
             }
           }
 
-          fs.writeFile(`${stickerFolder}/Contents.json`, JSON.stringify(stickerConfig), cb)
+          fs.writeFile(`${stickerFolder}/Contents.json`, JSON.stringify(stickerConfig, null, 4), cb)
         })
       })
     }, (err) => {
       if (err) return cb(err)
 
-      fs.writeFile(`${stickersPath}/Contents.json`, JSON.stringify(stickersConfig), cb)
+      fs.writeFile(`${stickersPath}/Contents.json`, JSON.stringify(stickersConfig, null, 4), cb)
     })
   })
 }
@@ -136,6 +143,14 @@ module.exports = {
         console.log('✅  Sticker pack created! Install to your device with `ios-sticker-pack deploy`')
       })
     })
+  },
+
+  update (opts) {
+      addImages((err) => {
+        if (err) throw err
+
+        console.log('✅  Sticker pack updated! Install to your device with `ios-sticker-pack deploy`')
+      })
   },
 
   deploy (opts) {
