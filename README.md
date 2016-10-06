@@ -40,6 +40,7 @@ Usage: ios-sticker-pack <command> [options]
 Commands:
   create  Creates a sticker pack app using the images inside the current folder
           (must be .png, .gif, or .jpg)
+  update  Updates stickers using the images inside the current folder (must be .png, .gif, or .jpg)
   deploy  Deploys the sticker pack to the connected device
 
 Options:
