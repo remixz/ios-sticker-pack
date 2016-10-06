@@ -93,7 +93,7 @@ function addImages (cb) {
       }
       const fileBaseName = path.basename(file, path.extname(file))
       const fileBaseNameValue = `${fileBaseName}.sticker`
-      const stickerItemExists = stickersConfig.stickers.filter(function (e) {
+      const stickerItemExists = !!stickersConfig.stickers.filter(function (e) {
           return e['filename']==fileBaseNameValue
       }).length
 
@@ -146,6 +146,12 @@ module.exports = {
   },
 
   update (opts) {
+      const stickersPath = path.resolve(process.cwd(), 'App/StickerPackExtension/Stickers.xcstickers/Sticker Pack.stickerpack')
+      if(!fs.existsSync(stickersPath)){
+        console.log('❌  Couldn\'t find Xcode project -- Create first. `ios-sticker-pack create`')
+        return
+      }
+
       addImages((err) => {
         if (err) throw err
 
